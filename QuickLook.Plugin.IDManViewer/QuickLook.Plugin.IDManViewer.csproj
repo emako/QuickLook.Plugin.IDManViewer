@@ -8,6 +8,7 @@
         <FileAlignment>512</FileAlignment>
         <SignAssembly>false</SignAssembly>
         <UseWPF>true</UseWPF>
+        <UseWindowsForms>true</UseWindowsForms>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -74,7 +75,14 @@
         <Delete Files="$(OutputPath)\QuickLook.Common.pdb" Condition="Exists('$(OutputPath)\QuickLook.Common.pdb')" />
     </Target>
 
-    <ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Costura.Fody" Version="6.0.0" Condition=" '$(Configuration)' == 'Release'">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>compile; runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
         <Compile Include="..\GitVersion.cs">
             <Link>Properties\GitVersion.cs</Link>
         </Compile>

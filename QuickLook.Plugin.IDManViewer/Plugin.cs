@@ -17,15 +17,20 @@
 
 using QuickLook.Common.Plugin;
 using System;
+using System.Diagnostics;
 
 namespace QuickLook.Plugin.IDManViewer;
 
 public class Plugin : IViewer
 {
+    private SpaceKeyListener listener = null!;
+
     public int Priority => int.MinValue;
 
     public void Init()
     {
+        listener = new SpaceKeyListener();
+        listener.SpaceReleased += OnSpaceKeyReleased;
     }
 
     public bool CanHandle(string path)
@@ -44,5 +49,16 @@ public class Plugin : IViewer
     public void Cleanup()
     {
         GC.SuppressFinalize(this);
+    }
+
+    private void OnSpaceKeyReleased()
+    {
+        if (IDManWindow.GetWindowName() is string winName)
+        {
+            if (IDManWindow.GetSelectItem(winName) is string selectedItem)
+            {
+                Debug.WriteLine($"IDMan Viewer Selected item: {selectedItem}");
+            }
+        }
     }
 }
