@@ -1,4 +1,4 @@
-﻿// Copyright © 2025 ema
+﻿// Copyright © 2025 QL-Win Contributors
 //
 // This file is part of QuickLook program.
 //
@@ -17,7 +17,8 @@
 
 using QuickLook.Common.Plugin;
 using System;
-using System.Diagnostics;
+using System.IO;
+using System.Windows;
 
 namespace QuickLook.Plugin.IDManViewer;
 
@@ -49,15 +50,22 @@ public class Plugin : IViewer
     public void Cleanup()
     {
         GC.SuppressFinalize(this);
+        listener.SpaceReleased -= OnSpaceKeyReleased;
     }
 
     private void OnSpaceKeyReleased()
     {
-        if (IDManWindow.GetWindowName() is string winName)
+        if (IDManWindow.GetWindowName() is string windowName
+         && IDManWindow.GetSelectItem(windowName) is string selectedItem
+         && IDManWindow.GetFilePath(selectedItem) is string filePath)
         {
-            if (IDManWindow.GetSelectItem(winName) is string selectedItem)
+            if (File.Exists(filePath))
             {
-                Debug.WriteLine($"IDMan Viewer Selected item: {selectedItem}");
+                ViewWindowManager.GetInstance().InvokePreview(filePath);
+            }
+            else
+            {
+                MessageBox.Show($"File `{filePath}` is not found.", "QuickLook.Plugin.IDManViewer", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
     }

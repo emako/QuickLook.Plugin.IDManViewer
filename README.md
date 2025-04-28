@@ -6,11 +6,19 @@ This plugin allows [QuickLook](https://github.com/QL-Win/QuickLook) to preview t
 
 Internet Download Manager (IDM) is a download accelerator to increase download speeds by up to 8 times, resume, organize and schedule downloads.
 
-<img src="https://www.internetdownloadmanager.com/register/IDMlib/images/idman_logos.png" >
+<img src="https://www.internetdownloadmanager.com/register/IDMlib/images/idman_logos.png" style="zoom: 100%;border-radius: 6px;"  >
+
+> Plugin is to read the file path from `Computer\HKEY_CURRENT_USER\Software\DownloadManager`.
 
 ## Screen Shot
 
-None
+<img src="./assets/image-20250428234209756.png" alt="image-20250428234209756" style="zoom:50%;border-radius: 12px;" />
+
+## Limitions
+
+1. Can not be displayed in the center of the IDMan window.
+2. Can not use Space to close the window.
+3. Can not use arrow key to switch to another files.
 
 ## Licenses
 
