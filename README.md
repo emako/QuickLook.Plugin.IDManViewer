@@ -12,7 +12,7 @@ Internet Download Manager (IDM) is a download accelerator to increase download s
 
 ## Screen Shot
 
-<img src="./assets/image-20250428234209756.png" alt="image-20250428234209756" style="zoom:50%;border-radius: 12px;" />
+<img src="./Assets/image-20250428234209756.png" alt="image-20250428234209756" style="zoom:50%;border-radius: 12px;" />
 
 ## Limitions
 
